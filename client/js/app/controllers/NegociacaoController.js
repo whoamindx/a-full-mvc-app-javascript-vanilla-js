@@ -7,7 +7,29 @@ class NegociacaoController {
 		this._inputData = $('#data');
 		this._inputQuantidade =  $('#quantidade');
 		this._inputValor = $('#valor');
-		this._listaNegociacoes = new ListaNegociacoes(model => this._negociacaoView.render(model) );
+
+		let self = this;
+		
+		this._listaNegociacoes = new Proxy(new ListaNegociacoes(), {
+
+		    get(target, prop, receiver) {
+
+		        if(['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function)) {
+
+		            return function(){
+
+						console.log(`método '${prop}' interceptado`);
+
+						Reflect.apply(target[prop], target, arguments);
+
+						self._negociacaoView.render(target);
+
+		            }
+		     }
+
+		     return Reflect.get(target, prop, receiver);
+		  }
+		});
 
 		this._negociacaoView = new NegociacaoView($('#negociacoesView'));
 		this._negociacaoView.render(this._listaNegociacoes);
