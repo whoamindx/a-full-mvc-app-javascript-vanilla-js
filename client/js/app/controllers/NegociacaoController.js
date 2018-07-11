@@ -17,7 +17,6 @@ class NegociacaoController {
 		);
 
 		this._negociacaoView = new NegociacaoView($('#negociacoesView'));
-		this._negociacaoView.render(this._listaNegociacoes);
 
 		this._mensagem = ProxyFactory.create(
 			new Mensagem(),
