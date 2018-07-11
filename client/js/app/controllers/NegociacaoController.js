@@ -9,8 +9,12 @@ class NegociacaoController {
 		this._inputValor = $('#valor');
 
 		let self = this;
+
+		this._listaNegociacoes = new Bind(
+			new ListaNegociacoes()
+		);
 		
-		this._listaNegociacoes = ProxyFactory.create(
+		ProxyFactory.create(
 			new ListaNegociacoes(),
 			['adiciona', 'esvazia'],
 			(model) => self._negociacaoView.render(model)
