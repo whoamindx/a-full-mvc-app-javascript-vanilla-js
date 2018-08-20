@@ -1,7 +1,5 @@
 class NegociacaoController {
-
 	constructor() {
-
 		let $ = document.querySelector.bind(document);
 
 		this._inputData = $('#data');

@@ -1,5 +1,4 @@
 class View{
-
 	constructor(elemento){
 		this._elemento = elemento;
 	}
@@ -11,5 +10,4 @@ class View{
 	render(model){
 		this._elemento.innerHTML = this.template(model);
 	}
-
 }
